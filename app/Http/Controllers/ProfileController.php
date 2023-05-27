@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
 
 class ProfileController extends Controller
 {
     public function index($name)
     {
-        $age = 19;
-        $address = "Pati";
-        return view('biodata', [
-            'name' => $name,
-            'age' => $age,
-            'address' => $address
-        ]);
+        $profils = Profil::all();
+        
+        $data = [
+            'profils' => $profils,
+        ];
+
+        return view('profil', $data);
     }
 }
